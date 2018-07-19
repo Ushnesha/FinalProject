@@ -38,6 +38,7 @@ appengine {  // App Engine tasks configuration
         }
     }
     //httpAddress="0.0.0.0"
+
 }
 
 dependencies {

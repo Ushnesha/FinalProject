@@ -2,17 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 apply plugin: 'com.google.gms.google-services'
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
-    }
-}
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+//    }
+//}
 
 android {
     compileSdkVersion 28
+
+    dexOptions{
+        javaMaxHeapSize "4g"
+    }
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
@@ -31,6 +35,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets{
+        main {
+            java.srcDirs = ['src/main/java']
+        }
+        test {
+            java.srcDirs = ['src/test/java']
+        }
+        androidTest {
+            java.srcDirs = ['src/androidTest/java']
+        }
+    }
+    flavorDimensions "tier"
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+            versionName "1.0free"
+            dimension "tier"
+        }
+
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            versionName "1.0paid"
+            dimension "tier"
+        }
+    }
 }
 
 
@@ -46,10 +76,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation project(':JavaJoke')
     implementation project(':androidjoke')
-
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
+    androidTestImplementation "org.mockito:mockito-core:1.+"
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    //androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
 }
