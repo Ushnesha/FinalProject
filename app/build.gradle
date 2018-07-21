@@ -12,7 +12,7 @@ apply plugin: 'com.google.gms.google-services'
 //}
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
 
     dexOptions{
         javaMaxHeapSize "4g"
@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -36,31 +36,7 @@ android {
         }
     }
 
-    sourceSets{
-        main {
-            java.srcDirs = ['src/main/java']
-        }
-        test {
-            java.srcDirs = ['src/test/java']
-        }
-        androidTest {
-            java.srcDirs = ['src/androidTest/java']
-        }
-    }
-    flavorDimensions "tier"
-    productFlavors {
-        free {
-            applicationId "com.udacity.gradle.builditbigger.free"
-            versionName "1.0free"
-            dimension "tier"
-        }
 
-        paid {
-            applicationId "com.udacity.gradle.builditbigger.paid"
-            versionName "1.0paid"
-            dimension "tier"
-        }
-    }
 }
 
 
@@ -68,7 +44,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
-    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
