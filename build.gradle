@@ -15,6 +15,34 @@ buildscript {
     }
 }
 
+//task testProject {
+//    dependsOn(['startDevServer','runMyTests','shutdownDevServer'])
+//}
+//
+//task startDevServer {
+//    dependsOn ':backend:appengineRun'
+//    evaluationDependsOn(":backend")
+//}
+//
+//task runMyTests {
+//    dependsOn ':app:connectedAndroidTest'
+//    mustRunAfter "startDevServer"
+//}
+//
+//task shutdownDevServer {
+//    dependsOn ':backend:appengineStop'
+//    mustRunAfter "runMyTests"
+//
+//}
+task optionalTask(dependsOn: [":backend:appengineStart",
+                              ":app:connectedAndroidTest",
+                              ':backend:appengineStop']) {
+    doLast {
+        println 'optionalTask completed'
+    }
+}
+
+
 allprojects {
     repositories {
 
