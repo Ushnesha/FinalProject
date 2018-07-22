@@ -48,7 +48,7 @@ public class EndpointsAsyncTask extends AsyncTask<MainActivityFragment, Void, St
         context = mainActivityFragment.getActivity();
 
         try {
-            return myApiService.sayHi("Ushnesha").execute().getData();
+            return myApiService.gceJokes().execute().getJokes();
         } catch (IOException e) {
             return e.getMessage();
         }
