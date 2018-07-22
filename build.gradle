@@ -17,11 +17,11 @@ buildscript {
 
 
 
-task optionalTask(dependsOn: [":backend:appengineStart",
+task testTasks(dependsOn: [":backend:appengineStart",
                               ":app:connectedAndroidTest",
                               ':backend:appengineStop']) {
     doLast {
-        println 'optionalTask completed'
+        println 'testTasks completed'
     }
 }
 
