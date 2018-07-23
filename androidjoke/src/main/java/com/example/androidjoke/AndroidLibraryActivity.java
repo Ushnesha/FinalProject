@@ -22,7 +22,8 @@ public class AndroidLibraryActivity extends AppCompatActivity {
 //        tv.setText(S);
 
         String jokeRes = null;
-        jokeRes = getIntent().getStringExtra(JOKE_ID);
+        if(getIntent().hasExtra(JOKE_ID))
+          jokeRes = getIntent().getStringExtra(JOKE_ID);
         if(jokeRes != null){
             tv.setText(jokeRes);
         }else{
